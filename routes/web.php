@@ -4,10 +4,11 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\GaleryController;
-use App\Http\Controllers\KegiatanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PartisipasiKegiatanController;
+use App\Http\Controllers\PartisipasiKegiatanPromosiController;
+use App\Http\Controllers\PengurusController;
 use App\Http\Controllers\PromosiKegiatanController;
 
 use App\Models\PromosiKegiatan;
@@ -102,14 +103,14 @@ Route::post('diterima/{pendaftaran}', [PendaftaranController::class, 'diterima']
 Route::post('/daftar', [PendaftaranController::class, 'store']);
 
 Route::resource('anggota', AnggotaController::class)->middleware(['auth:user']);
-Route::resource('kegiatan', KegiatanController::class)->middleware(['auth:user']);
 
 // Route::resource('listkegiatan', PartisipasiKegiatanController::class)->middleware(['auth:anggota']);
 Route::resource('listkegiatan', PartisipasiKegiatanController::class);
 
-Route::get('/showpartisipasi/{kegiatan}', [KegiatanController::class, 'showPartisipasi'])->middleware(['auth:user']);
-Route::post('absensi/{partisipasiKegiatan}', [PartisipasiKegiatanController::class, 'absensi'])->middleware(['auth:user']);
+Route::get('/showpartisipasi/{promokegiatan}', [PromosiKegiatanController::class, 'showPartisipasi'])->middleware(['auth:user']);
+Route::post('absensi/{kode}', [PromosiKegiatanController::class, 'absensi'])->middleware(['auth:user']);
 Route::resource('/promokegiatan', PromosiKegiatanController::class)->middleware(['auth:user']);
+Route::post('partisipasi/{kode}', [PromosiKegiatanController::class, 'delete'])->middleware('auth:user');
 
 Route::resource('dokumentasi', DokumentasiController::class)->middleware(['auth:user']);
 
@@ -129,3 +130,7 @@ Route::get('/test2', function () {
     return Auth::guard('anggota')->check();
 });
 
+Route::get('daftar-partisipasi/{promokegiatan}', [PartisipasiKegiatanPromosiController::class, 'daftar'])->middleware('guest');
+Route::post('daftar-partisipasi', [PartisipasiKegiatanPromosiController::class, 'store'])->middleware('guest');
+
+Route::resource('pengurus', PengurusController::class)->middleware('auth:user');

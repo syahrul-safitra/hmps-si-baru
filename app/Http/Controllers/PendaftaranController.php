@@ -49,7 +49,6 @@ class PendaftaranController extends Controller
 
         $validated = $request->validate([
             'nama_lengkap' => 'required|max:150',
-            'email' => 'required|max:50|email|unique:pendaftarans|unique:anggotas',
             'nim' => 'required|numeric|unique:pendaftarans|unique:anggotas',
             'no_wa' => 'required|numeric|unique:pendaftarans|unique:anggotas',
             'semester' => 'required|numeric|max:15',
@@ -129,10 +128,6 @@ class PendaftaranController extends Controller
             'file_ss_instagram' => 'max:1000',
         ];
 
-        if ($request->email != $pendaftaran->email) {
-
-            $rules['email'] = 'required|max:50|email|unique:pendaftarans|unique:anggotas';
-        }
         if ($request->nim != $pendaftaran->nim) {
 
             $rules['nim'] = 'required|max:50|unique:pendaftarans|unique:anggotas';
@@ -360,7 +355,6 @@ class PendaftaranController extends Controller
         try {
             Anggota::create([
                 'nama_lengkap' => $pendaftaran->nama_lengkap,
-                'email' => $pendaftaran->email,
                 'nim' => $pendaftaran->nim,
                 'no_wa' => $pendaftaran->no_wa,
                 'tahun' => $pendaftaran->tahun,

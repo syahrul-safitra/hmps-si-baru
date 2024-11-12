@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'password' => 'password'
+            'password' => 'password',
+            'role' => 'admin'
         ]);
 
         \App\Models\Galery::create([

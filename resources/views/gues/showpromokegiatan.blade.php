@@ -12,10 +12,17 @@
                 <div class="card-actions justify-start">
                     <div class="badge badge-outline">{{ date('d-m-Y', strtotime($promokegiatan->tanggal)) }}</div>
                 </div>
+                <div class="card-actions justify-start">
+                    <div class="badge badge-outline"><a href="{{ url('daftar-partisipasi/' . $promokegiatan->id) }}">
+                            Daftar
+                        </a>
+                    </div>
+                </div>
                 <br>
                 <div class="text-left">
                     {!! $promokegiatan->deskripsi !!}
                 </div>
+
             </div>
         </div>
     </div>

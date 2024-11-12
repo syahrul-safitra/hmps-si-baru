@@ -21,7 +21,6 @@
                     <tr>
                         <th style="color:black">No</th>
                         <th style="color:black">Nama</th>
-                        <th style="color:black">Email</th>
                         <th style="color:black">NIM</th>
                         <th style="color:black">Tahun</th>
                         <th style="color:black">No WA</th>
@@ -40,9 +39,6 @@
                             </th>
                             <td>
                                 {{ $item->nama_lengkap }}
-                            </td>
-                            <td>
-                                {{ $item->email }}
                             </td>
                             <td>
                                 {{ $item->nim }}

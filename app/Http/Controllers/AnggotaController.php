@@ -64,12 +64,7 @@ class AnggotaController extends Controller
             'semester' => 'required|numeric',
             'kelas' => 'required',
             'file_ktm' => 'max:1200',
-            'password' => 'required|max:10|min:8'
         ];
-
-        if ($request->email != $anggotum->email) {
-            $rules['email'] = 'required|max:50|email|unique:anggotas';
-        }
 
         if ($request->nim != $anggotum->nim) {
             $rules['nim'] = 'required|unique:anggotas';

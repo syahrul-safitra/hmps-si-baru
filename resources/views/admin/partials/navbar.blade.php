@@ -67,11 +67,14 @@
                     </div>
                 </li>
                 <li><a href="{{ url('anggota') }}">Anggota</a></li>
-                <li><a href="{{ url('kegiatan') }}">Kegiatan</a></li>
+                {{-- <li><a href="{{ url('kegiatan') }}">Kegiatan</a></li> --}}
                 <li><a href="{{ url('promokegiatan') }}">Promosi Kegiatan</a></li>
                 <li><a href="{{ url('dokumentasi') }}">Dokumentasi</a></li>
                 <li><a href="{{ url('editgalery') }}">Galery</a></li>
-                <li><a href="{{ url('passwordadmin') }}">Password Admin</a></li>
+                @if (Auth::guard('user')->user()->role == 'admin')
+                    <li><a href="{{ url('pengurus') }}">Pengurus</a></li>
+                    <li><a href="{{ url('passwordadmin') }}">Password Admin</a></li>
+                @endif
                 {{-- @endcan --}}
 
             </ul>

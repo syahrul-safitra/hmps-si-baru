@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Anggota;
 use App\Models\Berita;
 use App\Models\Pendaftaran;
-use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\File;
@@ -127,7 +126,6 @@ class BeritaController extends Controller
         return view('admin.dashboard', [
             'pendaftaran' => Pendaftaran::all()->count(),
             'anggota' => Anggota::all()->count(),
-            'kegiatan' => Kegiatan::all()->count(),
             'berita' => Berita::all()->count(),
 
         ]);

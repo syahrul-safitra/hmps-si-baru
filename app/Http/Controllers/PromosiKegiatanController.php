@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PartisiPromosiKegiatan;
 use App\Models\PromosiKegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -124,5 +125,26 @@ class PromosiKegiatanController extends Controller
         return view('gues.showpromokegiatan', [
             'promokegiatan' => $promokegiatan
         ]);
+    }
+
+    public function showPartisipasi(PromosiKegiatan $promokegiatan)
+    {
+        return view('admin.kegiatan.partisipasi', [
+            'kegiatan' => $promokegiatan->load('partisipasiPromoKegiatan')
+        ]);
+    }
+
+    public function absensi(Request $request, $kode)
+    {
+
+        PartisiPromosiKegiatan::where('kode', $kode)->update(['status' => $request->presensi]);
+        return back()->with('success', 'Presensi berhasil!');
+    }
+
+    public function delete($kode)
+    {
+        PartisiPromosiKegiatan::where('kode', $kode)->delete();
+
+        return back()->with('success', 'Data berhasil dihapus!');
     }
 }

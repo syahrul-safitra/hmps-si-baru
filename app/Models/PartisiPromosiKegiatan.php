@@ -5,15 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dokumentasi extends Model
+class PartisiPromosiKegiatan extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'nim',
+        'kode',
         'nama',
-        'tanggal',
-        'keterangan',
-        'thumbnail',
-        'link_gdrive'
+        'semester',
+        'kelas',
+        'no_wa',
+        'status',
+        'promosi_kegiatan_id'
     ];
 }

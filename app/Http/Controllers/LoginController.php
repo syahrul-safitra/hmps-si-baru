@@ -22,12 +22,8 @@ class LoginController extends Controller
             'password' => 'required|max:10'
         ]);
 
-        if (Auth::guard('anggota')->check() || Auth::guard('user')->check()) {
+        if (Auth::guard('user')->check()) {
             return back()->with('loginFailed', 'Udah login BNGG!!');
-        }
-
-        if (Auth::guard('anggota')->attempt($credentials)) {
-            return redirect()->intended('/listkegiatan');
         }
 
         if (Auth::guard('user')->attempt($credentials)) {
@@ -41,13 +37,7 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
 
-        if (Auth::guard('user')->check()) {
-            Auth::guard('user')->logout();
-
-        } else {
-            Auth::guard('anggota')->logout();
-        }
-
+        Auth::guard('user')->logout();
         return redirect('login');
 
     }

@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('nama');
             $table->date('tanggal');
             $table->string('keterangan');
+            $table->string('thumbnail');
             $table->string('link_gdrive');
             $table->timestamps();
         });

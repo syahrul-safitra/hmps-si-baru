@@ -27,19 +27,6 @@
 
                     <label class="form-control w-full ">
                         <div class="label">
-                            <span class="label-text">Email</span>
-                        </div>
-                        <input type="email" placeholder="Type here" name="email" value="{{ @old('email') }}"
-                            class="input input-bordered w-full @error('email') input-error @enderror" />
-                        @error('email')
-                            <div class="label">
-                                <span class="label-text-alt text-red-600">{{ $message }}</span>
-                            </div>
-                        @enderror
-                    </label>
-
-                    <label class="form-control w-full ">
-                        <div class="label">
                             <span class="label-text">NIM</span>
                         </div>
                         <input type="text" placeholder="Type here" name="nim" value="{{ @old('nim') }}"

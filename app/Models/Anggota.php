@@ -15,27 +15,12 @@ class Anggota extends Authenticatable
 
     protected $fillable = [
         'nama_lengkap',
-        'email',
         'nim',
         'no_wa',
         'tahun',
         'semester',
         'kelas',
         'file_ktm',
-        'password'
-    ];
-
-    public function partisipasiKegiatan()
-    {
-        return $this->hasMany(PartisipasiKegiatan::class);
-    }
-
-    protected $hidden = [
-        'password'
-    ];
-
-    protected $casts = [
-        'password' => 'hashed'
     ];
 
 }

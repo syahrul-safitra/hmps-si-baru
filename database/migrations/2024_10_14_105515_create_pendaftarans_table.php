@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('pendaftarans', function (Blueprint $table) {
             $table->id();
             $table->string('nama_lengkap');
-            $table->string('email')->unique();
             $table->string('nim');
             $table->string('no_wa');
             $table->year('tahun');
