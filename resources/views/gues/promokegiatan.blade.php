@@ -21,7 +21,7 @@
     <div class="container mx-auto bg-white">
 
         @if (count($promokegiatans) > 0)
-            <section class="">
+            {{-- <section class="">
                 <div class="container p-6 mx-auto space-y-8">
                     <div class="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
                         @foreach ($promokegiatans as $item)
@@ -45,7 +45,78 @@
                         @endforeach
                     </div>
                 </div>
-            </section>
+            </section> --}}
+
+            <div class="card-body">
+                @if (session()->has('success'))
+                    <div role="alert" class="alert alert-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ session('success') }}</span>
+                    </div>
+                @endif
+
+                <h2 class="card-title">List Kegiatan</h2>
+                <div class="overflow-x-auto">
+                    <div class="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
+                        @foreach ($promokegiatans as $item)
+                            @php
+                                $countPartisipasi = 0;
+                                // $sudahMengikuti = false;
+
+                                $check = false;
+                                if ($item->partisipasiPromoKegiatan->count() > 0) {
+                                    $countPartisipasi = $item->partisipasiPromoKegiatan->count();
+                                }
+
+                                // dd($sudahMengikuti);
+
+                            @endphp
+                            <div class="card bg-base-100 shadow-xl">
+                                <figure>
+                                    <img src="{{ asset('berkas_kegiatan/' . $item->thumbnail) }}" alt="Shoes" />
+                                </figure>
+                                <div class="card-body">
+                                    <h2 class="card-title">{{ $item->nama_kegiatan }}</h2>
+                                    {{-- <p>{{ $item->deskripsi }}</p> --}}
+                                    <p class="truncate">{!! $item->deskripsi !!}
+                                    </p>
+                                    <a href="{{ url('lihatpromokegiatan/' . $item->id) }}" class="card-actions justify-end">
+                                        <!-- The button to open modal -->
+                                        <label for="my_modal_{{ $item->id }}" class="btn">Selengkapnya</label>
+
+
+                                    </a>
+                                    <div class="card-actions justify-end">
+                                        {{-- @if ($sudahMengikuti)
+                                            <div class="badge badge-primary">Anda sudah mengikuti</div>
+                                        @elselihatpromokegiatan/' . $item->id
+                                            <div class="badge badge-ghost">Anda belum mengikuti</div>
+                                        @endif --}}
+                                        <div class="badge badge-outline">Anggota yang mengikuti : {{ $countPartisipasi }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Put this part before </body> tag -->
+                            {{-- <input type="checkbox" id="my_modal_{{ $item->id }}" class="modal-toggle" />
+                            <div class="modal" role="dialog">
+                                <div class="modal-box">
+                                    <h3 class="text-lg font-bold">Deskripsi Lengkap</h3>
+                                    <p class="py-4">{{ $item->deskripsi }}</p>
+                                </div>
+                                <label class="modal-backdrop" for="my_modal_{{ $item->id }}">Close</label>
+                            </div> --}}
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         @else
             <p class="text-center text-red-700 py-5">Not Found</p>
         @endif

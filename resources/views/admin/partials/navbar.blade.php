@@ -26,7 +26,7 @@
                 <div tabindex="0" role="button">
                     <div class="avatar">
                         <div class="ring-primary ring-offset-base-100 w-10 rounded-full ring ring-offset-2">
-                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            <img src="{{ asset('img/LOGO HMPS.png') }}" />
                         </div>
                     </div>
                 </div>

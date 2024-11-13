@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Dokumentasi;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\File;
+
 class DokumentasiController extends Controller
 {
     /**
@@ -35,8 +37,16 @@ class DokumentasiController extends Controller
             'nama' => 'required|max:100',
             'tanggal' => 'required',
             'keterangan' => 'required|max:150',
-            'link_gdrive' => 'required'
+            'link_gdrive' => 'required',
+            'thumbnail' => 'required|max:1200'
         ]);
+
+        $file = $request->file('thumbnail');
+
+        $rename = uniqid() . '_' . $file->getClientOriginalName();
+
+        $validated['thumbnail'] = $rename;
+        $file->move('berkas', $rename);
 
         Dokumentasi::create($validated);
 
@@ -70,8 +80,21 @@ class DokumentasiController extends Controller
             'nama' => 'required|max:100',
             'tanggal' => 'required',
             'keterangan' => 'required|max:150',
-            'link_gdrive' => 'required'
+            'link_gdrive' => 'required',
+            'thumbnail' => 'max:1200'
         ]);
+
+        if ($request->file('thumbnail')) {
+            $file = $request->file('thumbnail');
+
+            $rename = uniqid() . '_' . $file->getClientOriginalName();
+
+            $validated['thumbnail'] = $rename;
+            $file->move('berkas', $rename);
+
+            File::delete('berkas/' . $dokumentasi->thumbnail);
+
+        }
 
         $dokumentasi->update($validated);
 
@@ -83,7 +106,7 @@ class DokumentasiController extends Controller
      */
     public function destroy(Dokumentasi $dokumentasi)
     {
-
+        File::delete('berkas/' . $dokumentasi->thumbnail);
         $dokumentasi->delete();
 
         return redirect('dokumentasi')->with('success', 'Dokumentasi berhasil dihapus!');

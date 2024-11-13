@@ -24,7 +24,7 @@
                 <div class="card-body">
                     <h2 class="card-title">Kegiatan</h2>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Kosong</button>
+                        <button class="btn btn-primary">{{ $kegiatan }}</button>
                     </div>
                 </div>
             </div>

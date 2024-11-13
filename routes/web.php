@@ -72,8 +72,9 @@ Route::get('/lihatberita', function () {
 });
 
 Route::get('lihatpromokegiatan', function () {
+
     return view('gues.promokegiatan', [
-        'promokegiatans' => PromosiKegiatan::filter(request('search'))->latest()->get()
+        'promokegiatans' => PromosiKegiatan::with('partisipasiPromoKegiatan')->filter(request('search'))->latest()->get()
     ]);
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Anggota;
 use App\Models\Berita;
 use App\Models\Pendaftaran;
+use App\Models\PromosiKegiatan;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\File;
@@ -127,7 +128,7 @@ class BeritaController extends Controller
             'pendaftaran' => Pendaftaran::all()->count(),
             'anggota' => Anggota::all()->count(),
             'berita' => Berita::all()->count(),
-
+            'kegiatan' => PromosiKegiatan::all()->count()
         ]);
     }
 }

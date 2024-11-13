@@ -51,6 +51,22 @@
 
             <label class="form-control w-full ">
                 <div class="label">
+                    <span class="label-text">Thumbnail</span>
+                </div>
+                <input type="file" id="image" onchange="previewImage()" name="thumbnail"
+                    class="file-input file-input-bordered file-input-info w-full max-w-xs" accept=".png, .jpg, .jpeg" />
+
+                <img class="w-64 rounded mt-4" id="img-preview" src="{{ asset('berkas/' . $dokumentasi->thumbnail) }}">
+                @error('thumbnail')
+                    <div class="label">
+                        <span class="label-text-alt text-red-600">{{ $message }}</span>
+                    </div>
+                @enderror
+            </label>
+
+
+            <label class="form-control w-full ">
+                <div class="label">
                     <span class="label-text">Link G-Drive</span>
                 </div>
 

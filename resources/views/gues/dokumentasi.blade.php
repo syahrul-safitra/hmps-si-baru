@@ -18,7 +18,7 @@
                                 <a rel="noopener noreferrer" href="{{ url($item->link_gdrive) }}"
                                     aria-label="Te nulla oportere reprimique his dolorum">
                                     <img alt="" class="object-cover w-full h-52 dark:bg-gray-500"
-                                        src="{{ asset('img/bg_doku.jpg') }}">
+                                        src="{{ asset('berkas/' . $item->thumbnail) }}">
                                 </a>
                                 <div class="flex flex-col flex-1 p-6">
                                     <a rel="noopener noreferrer" href="#"

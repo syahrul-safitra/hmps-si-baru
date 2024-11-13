@@ -15,7 +15,7 @@
         <div class="card bg-base-100 shadow-xl">
             <div class="avatar flex justify-center pt-4">
                 <div class="w-24 rounded-full">
-                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    <img src="{{ asset('img/LOGO HMPS.png') }}" />
                 </div>
             </div>
 
