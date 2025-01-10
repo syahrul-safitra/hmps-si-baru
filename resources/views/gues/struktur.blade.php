@@ -7,9 +7,9 @@
                 <h2 class="card-title">Struktur</h2>
             </div>
             <div class="card-body items-center text-center">
-                <figure class="px-10 pt-10">
+                <a class="px-10 pt-10" href="{{ asset('img/' . $galery->struktur) }}">
                     <img src="{{ asset('img/' . $galery->struktur) }}" alt="Shoes" class="rounded-xl" />
-                </figure>
+                </a>
             </div>
         </div>
     </div>

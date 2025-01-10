@@ -4,9 +4,9 @@
     <div class="container mx-auto my-5">
 
         <div class="card bg-base-100 shadow-xl">
-            <figure class="px-10 pt-10">
+            <a class="px-10 pt-10" href="{{ asset('img/' . $galery->profile) }}">
                 <img src="{{ asset('img/' . $galery->profile) }}" alt="Shoes" class="rounded-xl" />
-            </figure>
+            </a>
             <div class="card-body items-center text-center">
                 <h2 class="card-title">Gambaran Umum HMPS SI UIN STS Jambi</h2>
                 <p>Himpunan Mahasiswa Program Studi Sistem Informasi yang berada di

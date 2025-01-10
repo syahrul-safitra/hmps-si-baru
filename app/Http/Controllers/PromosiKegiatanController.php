@@ -18,7 +18,7 @@ class PromosiKegiatanController extends Controller
     public function index()
     {
         return view('admin.promokegiatan.index', [
-            'promoKegiatans' => PromosiKegiatan::latest()->get()
+            'promoKegiatans' => PromosiKegiatan::latest()->paginate(20)
         ]);
     }
 

@@ -1,26 +1,29 @@
 @extends('gues.layouts.main')
 
 @section('container')
-    <div class="carousel w-full ">
-        <div id="slide1" class="carousel-item relative w-full">
+    <div class="carousel w-full">
+        <!-- Slide 1 -->
+        <div class="carousel-item opacity-100 z-10">
             <img src="{{ asset('img/' . $galery->banner1) }}" class="w-full" />
             <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                <a href="#slide3" class="btn btn-circle">❮</a>
-                <a href="#slide2" class="btn btn-circle">❯</a>
+                <a href="#slide3" class="btn btn-circle" data-slide="3">❮</a>
+                <a href="#slide2" class="btn btn-circle" data-slide="2">❯</a>
             </div>
         </div>
-        <div id="slide2" class="carousel-item relative w-full">
+        <!-- Slide 2 -->
+        <div class="carousel-item opacity-0 z-0">
             <img src="{{ asset('img/' . $galery->banner2) }}" class="w-full" />
             <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                <a href="#slide1" class="btn btn-circle">❮</a>
-                <a href="#slide3" class="btn btn-circle">❯</a>
+                <a href="#slide1" class="btn btn-circle" data-slide="1">❮</a>
+                <a href="#slide3" class="btn btn-circle" data-slide="3">❯</a>
             </div>
         </div>
-        <div id="slide3" class="carousel-item relative w-full">
+        <!-- Slide 3 -->
+        <div class="carousel-item opacity-0 z-0">
             <img src="{{ asset('img/' . $galery->banner3) }}" class="w-full" />
             <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                <a href="#slide2" class="btn btn-circle">❮</a>
-                <a href="#slide1" class="btn btn-circle">❯</a>
+                <a href="#slide2" class="btn btn-circle" data-slide="2">❮</a>
+                <a href="#slide1" class="btn btn-circle" data-slide="1">❯</a>
             </div>
         </div>
     </div>
@@ -109,3 +112,84 @@
         </div>
     </section>
 @endsection
+
+
+<!-- animasi -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('.carousel-item');
+        let currentIndex = 0;
+
+        const updateSlide = (index) => {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    // Slide aktif: tampilkan dengan fade-in
+                    slide.classList.add('opacity-100', 'z-10');
+                    slide.classList.remove('opacity-0', 'z-0', 'hidden');
+                } else {
+                    // Slide tidak aktif: sembunyikan dengan fade-out
+                    slide.classList.add('opacity-0', 'z-0');
+                    slide.classList.remove('opacity-100', 'z-10');
+                }
+            });
+        };
+
+        // Otomatis geser setiap 5 detik
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlide(currentIndex);
+        }, 5000);
+
+        // Navigasi manual dengan tombol
+        const buttons = document.querySelectorAll('.btn-circle');
+        buttons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentIndex = parseInt(button.getAttribute('data-slide')) - 1;
+                updateSlide(currentIndex);
+            });
+        });
+
+        // Tampilkan slide pertama saat dimuat
+        updateSlide(currentIndex);
+    });
+</script>
+
+<style>
+    /* CSS untuk carousel */
+    .carousel {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 400px;
+    }
+
+    .carousel-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        z-index: 0;
+        transition: opacity 1s ease-in-out;
+        /* Transisi fade */
+    }
+
+    .carousel-item.opacity-100 {
+        opacity: 1;
+        /* Slide aktif terlihat */
+    }
+
+    .carousel-item.z-10 {
+        z-index: 10;
+        /* Slide aktif di atas */
+    }
+
+    @media (max-width: 768px) {
+        .carousel {
+            height: 200px;
+            /* Ubah tinggi menjadi 300px untuk tampilan mobile */
+        }
+    }
+</style>

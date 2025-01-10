@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\DialogProdiController;
 use App\Http\Controllers\DokumentasiController;
 use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\LoginController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PromosiKegiatanController;
 use App\Models\PromosiKegiatan;
 use App\Models\Galery;
 use App\Models\Berita;
+use App\Models\DialogProdi;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -46,7 +48,8 @@ Route::get('/kirim', function () {
 Route::get('/', function () {
     return view('gues.index', [
         'galery' => Galery::first(),
-        'beritas' => Berita::latest()->limit(4)->get()
+        'beritas' => Berita::latest()->limit(4)->get(),
+        'dialogs' => DialogProdi::latest()->limit(5)->get()
     ]);
 })->middleware('tamu');
 
@@ -135,3 +138,9 @@ Route::get('daftar-partisipasi/{promokegiatan}', [PartisipasiKegiatanPromosiCont
 Route::post('daftar-partisipasi', [PartisipasiKegiatanPromosiController::class, 'store'])->middleware('guest');
 
 Route::resource('pengurus', PengurusController::class)->middleware('auth:user');
+
+Route::resource("dialogprodi", DialogProdiController::class)->middleware("auth:user")->except(['create', 'show', 'edit', 'update']);
+Route::post("dialog", [DialogProdiController::class, "store"])->middleware("guest");
+Route::post("change-status-dialog/{dialog}", [DialogProdiController::class, 'change_status_dialog'])->middleware("auth:user");
+
+Route::get('dialog-selengkapnya', [DialogProdiController::class, 'selengkapnya'])->middleware('guest');

@@ -19,7 +19,7 @@ class PendaftaranController extends Controller
         return view('admin.pendaftaran.index', [
             'pendaftarans' => Pendaftaran::where('status', 'diproses')
                 ->orWhere('status', 'tidak_memenuhi_syarat')
-                ->latest()->get()
+                ->latest()->paginate(20)
         ]);
     }
 
@@ -29,7 +29,7 @@ class PendaftaranController extends Controller
             'pendaftarans' => Pendaftaran::where('status', 'lolos_screening')
                 ->orWhere('status', 'diterima')
                 ->orWhere('status', 'ditolak')
-                ->latest()->get()
+                ->latest()->paginate(20)
         ]);
     }
 

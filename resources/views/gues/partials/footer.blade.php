@@ -5,7 +5,34 @@
             <br />
             Fakultas Sains & Teknologi
         </p>
+
+
         <p>Copyright © HMPS-SI - All right reserved</p>
+
+        <!-- Open the modal using ID.showModal() method -->
+        {{-- <button class="btn" onclick="my_modal_1.showModal()">Dialog Prodi</button>
+        <dialog id="my_modal_1" class="modal">
+            <div class="modal-box">
+                <h3 class="text-lg font-bold text-black">Kirim Dialog</h3>
+                <div class="modal-action">
+                    <form method="post" class="w-full" action="{{ url('dialog') }}">
+                        @csrf
+                        <div class="flex flex-col gap-3 mb-3">
+                            <input type="text" placeholder="Nama" name="nama"
+                                class="input input-bordered w-full text-black" required />
+                            <input type="text" placeholder="Angkatan" name="angkatan"
+                                class="input input-bordered w-full text-black" required />
+                            <input type="text" placeholder="Pesan" name="pesan"
+                                class="input input-bordered w-full text-black" required />
+                        </div>
+
+                        <button class="btn" id="close-modal">Close</button>
+                        <button class="btn">Kirim</button>
+                    </form>
+                </div>
+            </div>
+        </dialog> --}}
+
     </aside>
     <nav>
         <div class="grid grid-flow-col gap-4">
@@ -36,3 +63,15 @@
         </div>
     </nav>
 </footer>
+
+{{-- <script>
+    const closeBtnModal = document.getElementById("close-modal");
+
+    const modal = document.getElementById('my_modal_1');
+
+    console.log(closeBtnModal)
+    closeBtnModal.addEventListener('click', function(e) {
+        e.preventDefault();
+        modal.close();
+    })
+</script> --}}

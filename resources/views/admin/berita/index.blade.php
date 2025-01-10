@@ -98,6 +98,8 @@
 
                 </tbody>
             </table>
+
+            {{ $beritas->links() }}
         </div>
     </div>
 @endsection

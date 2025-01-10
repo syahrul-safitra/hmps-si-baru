@@ -16,7 +16,7 @@ class DokumentasiController extends Controller
     {
 
         return view('admin.dokumentasi.index', [
-            'dokumentasis' => Dokumentasi::latest()->get()
+            'dokumentasis' => Dokumentasi::latest()->paginate(20)
         ]);
     }
 

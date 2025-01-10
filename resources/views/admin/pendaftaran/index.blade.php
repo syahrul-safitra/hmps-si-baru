@@ -330,6 +330,8 @@
 
                 </tbody>
             </table>
+
+            {{ $pendaftarans->links() }}
         </div>
     </div>
 @endsection

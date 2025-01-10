@@ -112,6 +112,8 @@
 
                 </tbody>
             </table>
+
+            {{ $promoKegiatans->links() }}
         </div>
     </div>
 @endsection

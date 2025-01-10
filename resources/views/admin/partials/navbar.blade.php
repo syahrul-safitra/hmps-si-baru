@@ -70,6 +70,7 @@
                 {{-- <li><a href="{{ url('kegiatan') }}">Kegiatan</a></li> --}}
                 <li><a href="{{ url('promokegiatan') }}">Promosi Kegiatan</a></li>
                 <li><a href="{{ url('dokumentasi') }}">Dokumentasi</a></li>
+                <li><a href="{{ url('dialogprodi') }}">Dialog Prodi</a></li>
                 <li><a href="{{ url('editgalery') }}">Galery</a></li>
                 @if (Auth::guard('user')->user()->role == 'admin')
                     <li><a href="{{ url('pengurus') }}">Pengurus</a></li>
